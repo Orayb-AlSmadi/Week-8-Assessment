@@ -35,21 +35,29 @@ var object2={
 }
 */
 
-//1) WRITE YOUR CODE UNDER THIS LINE         
+//1) WRITE YOUR CODE UNDER THIS LINE  
+let sum = (x,y) => x+y;       
 
-//2) WRITE YOUR CODE UNDER THIS LINE         
-
+//2) WRITE YOUR CODE UNDER THIS LINE 
+let consoleReturn = (x,y) => { 
+  console.log(x)
+  return y
+}
 //3) WRITE YOUR CODE UNDER THIS LINE         
-
+const name="Alex";
+let age=25;
+let result="My name is: " + name + "and my age is: " + age;
 //4) WRITE YOUR CODE UNDER THIS LINE         
-
+let food="Fried Chicken";
+let color="Blue";
+let object={
+  food,
+  color,
+}
 //5) WRITE YOUR CODE UNDER THIS LINE         
-
-
-
-
-
-
+let object2={
+  multi: (a,b) =>  a * b,
+}
 
 /* Q2:
 Using OOP
@@ -60,6 +68,7 @@ and make three instantiations from it
 computer1 => Windows,16,I7
 computer2 => Linux,8,I5
 computer3 => Mac,4,I3
+
 
 Example: 
 computer1
@@ -74,10 +83,19 @@ Output =>
 
 // WRITE YOUR CODE UNDER THIS LINE
 
+class Computer  {
 
-
-
-
+  constructor(OS,RAM,CPU)
+  {
+    OS,
+    RAM,
+    CPU 
+    doubleRAM: doubleRAM = function () {
+      return (this.RAM)*2;
+    }
+  };
+  
+ }
 
 
 /* Q3:
@@ -86,21 +104,29 @@ please fix the errors inside them
 */
 
 // App Component
+import React, { Component } from 'react';
 import Tasks from './components/Tasks';
 
 export default class App extends Component {
   state = {
     title: 'ELIZABETH GREENE',
-    todos: ['eat', 'eat eat', 'eact again']
+    todos: ['eat', 'eat eat', 'eat again']
   };
+
   changeTitle() {
-    state.title = 'AGGREGOR ZOLDYCK'
+    this.setState({
+      title: 'AGGREGOR ZOLDYCK',
+      todos: ['eat', 'eat eat', 'eat again']
+  })
   }
+
   render() {
     return (
-      <h1>App Component => state.title</h1>
+      <>
+      <h1>App Component => {this.state.title}</h1>
       <button onClick={this.changeTitle}>Change Title</button>
       <Tasks tasks={this.todos} changeTitleFromChild={this.changeTitle} />
+      </>
     );
   }
 }
@@ -108,20 +134,21 @@ export default class App extends Component {
 // Tasks Component
 import React, { Component } from 'react';
 
-class Tasks extends Component {
+export default class Tasks extends Component {
   state = {
     day: "Sat"
   };
+
   changeDay() {
-    day = 'Sun'
+    this.setState ({day : 'Sun'}) 
   }
 
   render() {
     return (
       <div>
-        <h1>Tasks Component => state.day</h1>
+        <h1>Tasks Component => {this.state.day}</h1>
         <button onClick={this.changeDay}>Change Tasks State</button>
-        <button onClick={changeTitle}>Change App State</button>
+        <button onClick={this.props.changeTitleFromChild}>Change App State</button>
       </div>
     );
   }
